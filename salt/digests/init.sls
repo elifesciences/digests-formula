@@ -14,17 +14,6 @@ digests-logs:
         - require:
             - digests-folder
 
-digests-app-config:
-    file.managed:
-        - name: /srv/digests/app.cfg
-        - source: salt://digests/config/srv-digests-app.cfg
-        - template: jinja
-        - user: {{ pillar.elife.deploy_user.username }}
-        - group: {{ pillar.elife.deploy_user.username }}
-        - require: 
-            - digests-folder
-            - digests-logs
-
 digests-uwsgi-config:
     file.managed:
         - name: /srv/digests/uwsgi.ini

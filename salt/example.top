@@ -1,16 +1,14 @@
 base:
     '*':
         - elife
-        # should not be needed since everything runs in a container
-        #- elife.python3
         - elife.uwsgi-params
         - elife.nginx
-        #- elife.postgresql-container
-        #- elife.postgresql-client
         - elife.aws-credentials
         - elife.aws-cli
         - elife.docker
-        #- elife.docker-databases
+        - elife.docker-databases
+        - elife.postgresql-container
+        #- elife.postgresql-client
         # for testing purposes:
         - elife.goaws
         #- digests.postgresql
