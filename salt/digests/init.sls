@@ -98,7 +98,7 @@ digests-docker-compose-yml:
 
 digests-docker-containers:
     cmd.run:
-        - name: /usr/local/bin/docker-compose up --force-recreate -d
+        - name: /usr/local/bin/docker-compose pull && /usr/local/bin/docker-compose up --force-recreate -d
         - user: {{ pillar.elife.deploy_user.username }}
         - cwd: /home/{{ pillar.elife.deploy_user.username }}/digests
         - require:
