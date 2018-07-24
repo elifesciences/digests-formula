@@ -1,8 +1,6 @@
 base:
     '*':
         - elife
-        # should not be needed since everything runs in a container
-        #- elife.python3
         - elife.uwsgi-params
         - elife.nginx
         #- elife.postgresql-container
