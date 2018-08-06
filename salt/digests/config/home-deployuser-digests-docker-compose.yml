@@ -7,7 +7,6 @@ services:
         command: >
             bash -c "./migrate.sh && exec venv/bin/uwsgi --ini=/srv/digests/uwsgi.ini --enable-threads"
         volumes:
-            - /srv/digests/app.cfg:/srv/digests/app.cfg
             - /srv/digests/uwsgi.ini:/srv/digests/uwsgi.ini
             - /srv/digests/var/logs:/srv/digests/var/logs
         networks:
