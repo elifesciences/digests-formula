@@ -74,6 +74,22 @@ digests-containers-env:
         - name: /home/{{ pillar.elife.deploy_user.username }}/digests/containers.env
         - source: salt://digests/config/home-deployuser-digests-containers.env
         - template: jinja
+        - context:
+        {% if salt['elife.cfg']('cfn.outputs.RDSHost') %}
+            # remote Postgres managed by RDS, temporarily using root user
+            db_host: {{ salt['elife.cfg']('cfn.outputs.RDSHost') }}
+            db_port: {{ salt['elife.cfg']('cfn.outputs.RDSPort') }}
+            db_user: {{ salt['elife.cfg']('project.rds_username') }}
+            db_password: {{ salt['elife.cfg']('project.rds_password') }}
+            db_name: {{ salt['elife.cfg']('project.rds_dbname') }}
+        {% else %}
+            # local postgres container
+            db_host: postgres
+            db_port: 5432
+            db_user: {{ pillar.elife.db_root.username }}
+            db_password: {{ pillar.elife.db_root.password }}
+            db_name: {{ pillar.elife.db.root.username }}
+        {% endif %}
         - require:
             - digests-docker-compose-folder
 
