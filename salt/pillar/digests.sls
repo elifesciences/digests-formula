@@ -18,7 +18,11 @@ elife:
     aws:
         access_key_id: AKIAFAKE
         secret_access_key: fake
+
     goaws:
         host: goaws
         topics:
             - digests--dev
+
+    docker_postgresql:
+        image_tag: 11
