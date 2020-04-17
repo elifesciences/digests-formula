@@ -3,12 +3,10 @@ version: '3'
 services:
     wsgi:
         image: elifesciences/digests:${IMAGE_TAG}
-        #command: >
-        #    bash -c "./migrate.sh && exec venv/bin/newrelic-admin run-program venv/bin/uwsgi --ini=/srv/digests/uwsgi.ini --enable-threads"
         command: >
-            bash -c "exec venv/bin/newrelic-admin run-program venv/bin/uwsgi --ini=/srv/digests/uwsgi.ini --enable-threads"
-            
+            bash -c "./migrate.sh && exec venv/bin/newrelic-admin run-program venv/bin/uwsgi --ini=/srv/digests/uwsgi.ini --enable-threads"
         volumes:
+            - /srv/digests/migrate.sh:/srv/digests/migrate.sh
             - /srv/digests/uwsgi.ini:/srv/digests/uwsgi.ini
             - /srv/digests/var/logs:/srv/digests/var/logs
         networks:

@@ -93,6 +93,15 @@ digests-containers-env:
         - require:
             - digests-docker-compose-folder
 
+digests-replacement-migrate-script:
+    file.managed:
+        - name: /srv/digests/migrate.sh
+        - source: salt://digests/config/srv-digests-migrate.sh
+        - template: jinja
+        - mode: 755
+        - require:
+            - digests-folder
+
 digests-docker-compose-yml:
     file.managed:
         - name: /home/{{ pillar.elife.deploy_user.username }}/digests/docker-compose.yml
@@ -107,6 +116,7 @@ digests-docker-containers:
         - runas: {{ pillar.elife.deploy_user.username }}
         - cwd: /home/{{ pillar.elife.deploy_user.username }}/digests
         - require:
+            - digests-replacement-migrate-script
             - digests-docker-compose-.env
             - digests-containers-env
             - digests-docker-compose-yml
