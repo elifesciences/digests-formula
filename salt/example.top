@@ -12,3 +12,4 @@ base:
         # for testing purposes:
         - elife.goaws
         - digests
+
