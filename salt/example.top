@@ -5,7 +5,7 @@ base:
         - elife.nginx
         - elife.aws-credentials
         - elife.aws-cli
-        - elife.docker
+        - elife.docker-native
         # where RDS is not used:
         - elife.docker-databases
         - elife.postgresql-container
