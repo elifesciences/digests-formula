@@ -83,7 +83,7 @@ digests-containers-env:
             db_password: {{ salt['elife.cfg']('project.rds_password') }}
             db_name: {{ salt['elife.cfg']('project.rds_dbname') }}
         {% else %}
-            # local postgres container
+            # local postgres
             db_host: host.docker.internal
             db_port: 5432
             db_user: {{ pillar.elife.db_root.username }}

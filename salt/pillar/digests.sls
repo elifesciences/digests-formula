@@ -6,13 +6,11 @@ digests:
         name: bus-digests
         subscriber: null
         region: us-east-1
-        # TODO: add optional goaws endpoint_url
 
 elife:
     db:
         app:
             name: digests
-            # non-super-user used to connect to db for regular operation
             username: foouser # case sensitive. use all lowercase
             password: barpass
 
