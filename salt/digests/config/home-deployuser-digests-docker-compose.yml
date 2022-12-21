@@ -16,6 +16,8 @@ services:
         env_file:
             - /home/{{ pillar.elife.deploy_user.username }}/digests/containers.env
         restart: always
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
 
 networks:
     default:

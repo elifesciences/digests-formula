@@ -6,10 +6,10 @@ base:
         - elife.aws-credentials
         - elife.aws-cli
         - elife.docker-native
-        # where RDS is not used:
-        #- elife.docker-databases
-        #- elife.postgresql-container
-        - elife.postgresql-11
+        - elife.docker-databases
+        - elife.postgresql-container-removal
+        - elife.postgresql-12
+        - elife.postgresql-appdb
 
         # for testing purposes:
         - elife.goaws

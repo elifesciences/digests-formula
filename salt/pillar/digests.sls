@@ -1,11 +1,5 @@
 digests:
     secret: fake_secret_do_not_use_in_prod
-    db:
-        name: digests
-        username: foouser # case sensitive. use all lowercase
-        password: barpass
-        host: 127.0.0.1
-        port: 5432
     logging:
         level: DEBUG
     sns:
@@ -15,6 +9,13 @@ digests:
         # TODO: add optional goaws endpoint_url
 
 elife:
+    db:
+        app:
+            name: digests
+            # non-super-user used to connect to db for regular operation
+            username: foouser # case sensitive. use all lowercase
+            password: barpass
+
     aws:
         access_key_id: AKIAFAKE
         secret_access_key: fake
