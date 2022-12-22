@@ -83,12 +83,12 @@ digests-containers-env:
             db_password: {{ salt['elife.cfg']('project.rds_password') }}
             db_name: {{ salt['elife.cfg']('project.rds_dbname') }}
         {% else %}
-            # local postgres container
-            db_host: postgres
+            # local postgres
+            db_host: host.docker.internal
             db_port: 5432
             db_user: {{ pillar.elife.db_root.username }}
             db_password: {{ pillar.elife.db_root.password }}
-            db_name: {{ pillar.elife.db.root.username }}
+            db_name: {{ pillar.elife.db.app.name }}
         {% endif %}
         - require:
             - digests-docker-compose-folder
@@ -107,6 +107,7 @@ digests-docker-containers:
         - runas: {{ pillar.elife.deploy_user.username }}
         - cwd: /home/{{ pillar.elife.deploy_user.username }}/digests
         - require:
+            - postgresql
             - digests-docker-compose-.env
             - digests-containers-env
             - digests-docker-compose-yml
