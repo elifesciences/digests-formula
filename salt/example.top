@@ -7,7 +7,6 @@ base:
         - elife.aws-cli
         - elife.docker-native
         - elife.docker-databases
-        - elife.postgresql-container-removal
         - elife.postgresql-12
         - elife.postgresql-appdb
 
