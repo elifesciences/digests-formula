@@ -22,6 +22,3 @@ elife:
         host: goaws
         topics:
             - digests--dev
-
-    docker_postgresql:
-        image_tag: 11
