@@ -9,7 +9,7 @@ base:
         - elife.aws-cli
         - elife.docker-native
         - elife.docker-databases
-        - elife.postgresql-12
+        - elife.postgresql-13
         - elife.postgresql-appdb
 
         # for testing purposes:
