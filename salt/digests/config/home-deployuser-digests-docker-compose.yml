@@ -4,7 +4,12 @@ services:
     wsgi:
         image: elifesciences/digests:${IMAGE_TAG}
         command: >
-            bash -c "./migrate.sh && exec venv/bin/newrelic-admin run-program venv/bin/uwsgi --ini=/srv/digests/uwsgi.ini --enable-threads"
+            bash -c "./migrate.sh && exec venv/bin/uwsgi --ini=/srv/digests/uwsgi.ini --enable-threads"
+        {% if pillar.elife.webserver.app == "caddy" %}
+        # when using Caddy, replace the default healthcheck that uses uwsgi with one that uses http
+        healthcheck:
+            test: ["CMD", "bash", "-c", "curl http://localhost:9000/ping | grep pong"]
+        {% endif %}
         volumes:
             - /srv/digests/uwsgi.ini:/srv/digests/uwsgi.ini
             - /srv/digests/var/logs:/srv/digests/var/logs

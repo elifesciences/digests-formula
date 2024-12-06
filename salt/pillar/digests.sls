@@ -8,6 +8,8 @@ digests:
         region: us-east-1
 
 elife:
+    webserver:
+        app: caddy
     db:
         app:
             name: digests

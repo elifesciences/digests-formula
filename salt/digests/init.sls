@@ -22,6 +22,20 @@ digests-uwsgi-config:
         - require:
             - digests-folder
 
+{% if pillar.elife.webserver.app == "caddy" %}
+digests-caddy-vhost:
+    file.managed:
+        - name: /etc/caddy/sites.d/digests
+        - source: salt://digests/config/etc-caddy-sites.d-digests
+        - template: jinja
+        - require:
+            - caddy-config
+        - require_in:
+            - caddy-validate-config
+        - listen_in:
+            - service: nginx-server-service
+{% else %}
+
 digests-nginx-vhost:
     file.managed:
         - name: /etc/nginx/sites-enabled/digests.conf
@@ -31,6 +45,7 @@ digests-nginx-vhost:
             - nginx-config
         - listen_in:
             - service: nginx-server-service
+{% endif %}
 
 digests-syslog-ng:
     file.managed:

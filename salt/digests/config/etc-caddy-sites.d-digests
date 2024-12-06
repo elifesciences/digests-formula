@@ -1,0 +1,21 @@
+(config) {
+    log {
+        output file /var/log/caddy/access.log
+        format json {
+            time_format rfc3339
+        }
+    }
+
+    handle {
+        reverse_proxy localhost:9000 {
+            transport http {
+                read_timeout 15s
+            }
+        }
+    }
+}
+
+:80 {
+    import config
+}
+
