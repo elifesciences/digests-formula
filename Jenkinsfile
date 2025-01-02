@@ -1,1 +1,1 @@
-elifeFormula('digests', '/srv/digests')
+elifeFormula('digests', '/srv/digests', null, ['snsalt'])
